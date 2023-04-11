@@ -33,3 +33,6 @@ AI 플랫폼 이해와 활용 : 23.03.29~23.04.12
 
 :star: 채팅
 BroadCast, Admin, Chatbot
+
+<img src="https://user-images.githubusercontent.com/122088040/231137823-bf0acc9f-c464-4bd3-b8c9-f0a437556353.png"  width="500" height="400"/>
+
