@@ -22,6 +22,8 @@ example code box
 
 :star: 회원가입
 
+ * 아이디, 비밀번호, 이름을 입력하여 회원가입을 한다.
+
 <img src="https://user-images.githubusercontent.com/122088040/231137823-bf0acc9f-c464-4bd3-b8c9-f0a437556353.png"  width="500" height="400"/>
 
 :star: 고객
