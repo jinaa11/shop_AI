@@ -1,0 +1,70 @@
+<script>
+    function delcart(did) {
+        var c = confirm("삭제하시겠습니까?");
+        if(c == true) {
+            location.href='/cart/deleteimpl?id='+did+'&cid=[[${session.logincust.id}]]';
+        }
+    }
+
+</script>
+<style>
+    .cart_img {
+        width: 50px;
+    }
+
+</style>
+<div class="container">
+    <div class="col-sm-10"></div>
+    <h2>Cart List</h2>
+    <p>Cart Information List</p>
+
+    <h3 th:text="'합계: ' + ${#aggregates.sum(carts.getList().![item_price * cnt])}"></h3>
+    <h3 th:text="'합계: ' + ${#aggregates.sum(mycarts.![item_price * cnt])}"></h3>
+    <table class="table table-striped" style="width:70%">
+        <thead>
+        <tr>
+            <th>IMG</th>
+            <th>ID</th>
+            <th>ITEM_NAME</th>
+            <th>ITEM_PRICE</th>
+            <th>COUNT</th>
+            <th>TOTAL</th>
+            <th>RDATE</th>
+            <th>DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cart : ${carts.getList()}">
+            <td>
+                <img class="cart_img" th:src="|/img/${cart.item_imgname}|">
+            </td>
+            <td th:text="${cart.id}"></td>
+            <td th:text="${cart.item_name}"></td>
+            <td th:text="${cart.item_price}"></td>
+            <td th:text="${cart.cnt}"></td>
+            <td th:text="${cart.item_price} * ${cart.cnt}"></td>
+            <td th:text="${#dates.format(cart.rdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td>
+                <!-- <a th:href="@{/cart/deletecart(id=${cart.id}, cust_id=${session.logincust.id})}" class="btn btn-danger"-->
+                <!--  role="button">DELETE THIS ITEM</a>-->
+                <button type="button" class="btn btn-danger" th:onclick="delcart([[${cart.id}]]);">DELETE THIS ITEM</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <!-- getPrePage : 이전 페이지 -->
+        <li th:classappend="${carts.getPrePage() == 0} ? 'disabled'">
+            <a th:href="@{/cart(pageNum=${carts.getPrePage()}, id=${session.logincust.id})}">Previous</a>
+        </li>
+        <!-- getNavigateFirstPage() : 페이징의 처음 숫자, getNavigateLastPage : 페이징의 마지막 숫자를 이용해 페이징 숫자 출력 -->
+        <li th:each="page: ${#numbers.sequence(carts.getNavigateFirstPage(), carts.getNavigateLastPage())}"
+            th:classappend="${page == carts.getPageNum()} ? 'active'">
+            <a th:text="${page}" th:href="@{/cart(pageNum=${page}, id=${session.logincust.id})}"></a>
+        </li>
+        <!-- getPrePage : 다음 페이지 -->
+        <li th:classappend="${carts.getNextPage() == 0} ? 'disabled'">
+            <a th:href="@{/cart(pageNum=${carts.getNextPage()}, id=${session.logincust.id})}">Next</a>
+        </li>
+    </ul>
+</div>

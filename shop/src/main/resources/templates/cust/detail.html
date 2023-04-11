@@ -1,0 +1,44 @@
+<script>
+    $(document).ready(function(){
+        $('#update_btn').click(function(){
+            $('#detail_form').attr(
+                {
+                    'action':'[[@{/cust/updateimpl}]]',
+                    'method':'post'
+                }
+            );
+            $('#detail_form').submit();
+        });
+
+        $('#delete_btn').click(function(){
+            id = $('#id').val();
+            var c = confirm('삭제하시겠습니까?');
+            if(c == true) {
+                location.href='/cust/deleteimpl?id='+id;
+            }
+        });
+    });
+</script>
+<div class="container">
+    <div class="col-sm-5">
+        <h2>Customer Detail</h2>
+        <form id="detail_form">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" class="form-control" id="id" th:value="${dcust.id}" name="id" readonly>
+                <span id="ispan"></span>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="text" class="form-control" id="pwd" th:value="${dcust.pwd}" name="pwd">
+            </div>
+            <div class="form-group">
+                <label for="name">NAME:</label>
+                <input type="text" class="form-control" id="name" th:value="${dcust.name}" name="name">
+            </div>
+        </form>
+        <!--button을 form 밖에 작성해야 함-->
+        <button id="update_btn" class="btn btn-default">UPDATE</button>
+        <button id="delete_btn" class="btn btn-default">DELETE</button>
+    </div>
+</div>

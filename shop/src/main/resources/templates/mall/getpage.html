@@ -1,0 +1,52 @@
+<style>
+    .mall_img {
+        width: 80px;
+    }
+
+</style>
+<div class="container">
+    <div class="col-sm-10">
+        <h2>Mall List</h2>
+        <table class="table table-striped" style="width:90%">
+            <thead>
+            <tr>
+                <th>Img</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>RDate</th>
+                <th>Ownername</th>
+                <th>Phonenumber</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${mall.getList()}">
+                <td>
+                    <a th:href="@{/mall/detail(id=${m.id})}">
+                        <img class="mall_img" th:src="|/img/${m.imgname}|">
+                    </a>
+                </td>
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${m.address}"></td>
+                <td th:text="${m.rdate}"></td>
+                <td th:text="${m.ownername}"></td>
+                <td th:text="${m.phonenumber}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <!-- getPrePage : 이전 페이지 -->
+            <li th:classappend="${mall.getPrePage() == 0} ? 'disabled'">
+                <a th:href="@{/mall/getpage(pageNum=${mall.getPrePage()})}">Previous</a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(mall.getNavigateFirstPage(), mall.getNavigateLastPage())}"
+                th:classappend="${page == mall.getPageNum()} ? 'active'">
+                <a th:text="${page}" th:href="@{/mall/getpage(pageNum=${page})}"></a>
+            </li>
+            <li th:classappend="${mall.getNextPage() == 0} ? 'disabled'">
+                <a th:href="@{/mall/getpage(pageNum=${mall.getNextPage()})}">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>

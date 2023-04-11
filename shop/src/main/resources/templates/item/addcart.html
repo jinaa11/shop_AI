@@ -1,0 +1,36 @@
+<script>
+    $(document).ready(function(){
+        $('#addcart_btn').click(function(){
+            $('#addcart_form').attr(
+                {
+                    'action':'[[@{/cart/addcartimpl}]]',
+                    'method':'post'
+                }
+            );
+            $('#addcart_form').submit();
+        });
+    });
+
+</script>
+<div class="container">
+    <div class="col-sm-5">
+        <h2>ADD CART PAGE</h2>
+        <h3 th:text="${ditem.name}"></h3>
+        <h3 th:text="${ditem.price}"></h3>
+        <img th:src="@{|/img/${ditem.imgname}|}" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+        <form id="addcart_form">
+            <input type="hidden" name="item_id" th:value="${ditem.id}">
+            <input type="hidden" name="cust_id" th:value="${session.logincust.id}">
+            <div class="form-group">
+                <label for="cnt">Count:</label>
+                <select class="form-control" id="cnt" name="cnt">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+        </form>
+        <button id="addcart_btn" class="btn btn-default">ADD CART</button>
+    </div>
+</div>

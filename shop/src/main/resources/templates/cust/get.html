@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col-sm-7">
+        <h2>Cust List</h2>
+        <p>Customer Information List</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>PWD</th>
+                <th>NAME</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c:${clist}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.pwd}"></td>
+                <td th:text="${c.name}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

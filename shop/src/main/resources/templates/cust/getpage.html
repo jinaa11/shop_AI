@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="col-sm-7"></div>
+    <h2>Cust List</h2>
+    <p>Customer Information List</p>
+    <table class="table table-striped" style="width:80%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>PWD</th>
+            <th>NAME</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users.getList()}">
+            <td>
+                <a th:href="@{/cust/detail(id=${user.id})}" th:text="${user.id}"></a>
+            </td>
+            <td th:text="${user.pwd}"></td>
+            <td th:text="${user.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <!-- getPrePage : 이전 페이지 -->
+        <li th:classappend="${users.getPrePage() == 0} ? 'disabled'">
+            <a th:href="@{/cust/getpage(pageNum=${users.getPrePage()})}">Previous</a>
+        </li>
+        <li th:each="page: ${#numbers.sequence(users.getNavigateFirstPage(), users.getNavigateLastPage())}" th:classappend="${page == users.getPageNum()} ? 'active'">
+            <a th:text="${page}" th:href="@{/cust/getpage(pageNum=${page})}"></a>
+        </li>
+        <li th:classappend="${users.getNextPage() == 0} ? 'disabled'">
+            <a th:href="@{/cust/getpage(pageNum=${users.getNextPage()})}">Next</a>
+        </li>
+    </ul>
+    </div>

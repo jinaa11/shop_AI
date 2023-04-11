@@ -1,0 +1,53 @@
+<style>
+    .item_img {
+        width: 80px;
+    }
+
+
+</style>
+<div class="container">
+    <div class="col-sm-10"></div>
+    <h2>Item List</h2>
+    <p>Item Information List</p>
+    <table class="table table-striped" style="width:70%">
+        <thead>
+        <tr>
+            <th>IMG</th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>RDATE</th>
+            <th th:if="${session.logincust != null}">CART</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items.getList()}">
+            <td>
+                <a th:href="@{/item/detail(id=${item.id})}">
+                    <img class="item_img" th:src="@{/img/}+${item.imgname}">
+                </a>
+            </td>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.rdate}"></td>
+            <td th:if="${session.logincust != null}">
+                <a th:href="@{/item/addcart(id=${item.id})}" class="btn btn-info" role="button">ADD CART</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <!-- getPrePage : 이전 페이지 -->
+        <li th:classappend="${items.getPrePage() == 0} ? 'disabled'">
+            <a th:href="@{/item/getpage(pageNum=${items.getPrePage()})}">Previous</a>
+        </li>
+        <li th:each="page: ${#numbers.sequence(items.getNavigateFirstPage(), items.getNavigateLastPage())}"
+            th:classappend="${page == items.getPageNum()} ? 'active'">
+            <a th:text="${page}" th:href="@{/item/getpage(pageNum=${page})}"></a>
+        </li>
+        <li th:classappend="${items.getNextPage() == 0} ? 'disabled'">
+            <a th:href="@{/item/getpage(pageNum=${items.getNextPage()})}">Next</a>
+        </li>
+    </ul>
+</div>

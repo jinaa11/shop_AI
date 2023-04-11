@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CustMapper">
+
+    <select id="select" parameterType="String" resultType="custDTO">
+        SELECT * FROM cust WHERE ID=#{id}
+    </select>
+    <!--paging 처리-->
+    <select id="getPage" resultType="custDTO">
+        SELECT * FROM cust ORDER BY id DESC
+    </select>
+    <!--custDTO 객체를 결과값으로 반환-->
+    <select id="selectall" resultType="custDTO">
+        SELECT * FROM cust
+    </select>
+    <insert id="insert" parameterType="custDTO">
+        INSERT INTO cust VALUES (#{id},#{pwd},#{name})
+    </insert>
+    <update id="update" parameterType="custDTO">
+        UPDATE cust SET pwd=#{pwd},name=#{name} WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="String">
+        DELETE FROM cust WHERE id=#{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,26 @@
+<script>
+    $(document).ready(function(){
+        $('#ocr2_form > button').click(function(){
+            $('#ocr2_form').attr(
+                {
+                    'enctype' : 'multipart/form-data',
+                    'action':'[[@{/ocrimpl2}]]',
+                    'method':'post'
+                }
+            );
+            $('#ocr2_form').submit();
+        });
+    });
+</script>
+<div class="container">
+    <div class="col-sm-5">
+        <h2>OCR2 Test</h2>
+        <form id="ocr2_form">
+            <div class="form-group">
+                <label for="img">IMG:</label>
+                <input type="file" class="form-control" id="img" placeholder="Enter Img" name="img">
+            </div>
+            <button class="btn btn-default">REGISTER</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<style>
+    #all {
+        width: 400px;
+        height: 200px;
+        overflow: auto;
+        border: 2px solid red;
+    }
+
+    #me {
+        width: 400px;
+        height: 200px;
+        overflow: auto;
+        border: 2px solid blue;
+    }
+
+    #to {
+        width: 400px;
+        height: 200px;
+        overflow: auto;
+        border: 2px solid green;
+    }
+</style>
+
+<script>
+    var stompClient = null;
+    var id = '[[${session.logincust.id}]]';
+
+    // 서버소켓에 연결
+    function connect() {
+        var socket = new SockJS('http://10.10.10.190/ws');
+        stompClient = Stomp.over(socket);
+
+        // 커넥트가 이뤄진 다음에
+        stompClient.connect({}, function (frame) {
+            setConnected(true);
+            console.log('Connected: ' + frame);
+            // 받을 준비를 한다. 3가지의 받을 준비
+            // 모두에게 전송
+            // 내가 글을 쓰면 나한테만 보낼건데,, 받는게 여기?
+            stompClient.subscribe('/send/' + id, function (msg) { //서버에서 /send/ +id라고 오는거에 받을 준비
+                $("#me").prepend(
+                    "<h4>" + JSON.parse(msg.body).sendid + ":" +
+                    JSON.parse(msg.body).content1 + "</h4>");
+                // ":"+
+                // // JSON.parse(msg.body).content2
+                // + "</h4>");
+            });
+        });
+    }
+
+    // connect&disconnect버턴 활성화/비활성화
+    function setConnected(connected) {
+        if (connected) {
+            $("#status").text("Connected");
+        } else {
+            $("#status").text("Disconnected");
+        }
+
+    }
+
+    // 서버에 메세지 요청 메서드
+    // 나에게만 전송
+    function sendMe() {
+        var msg = JSON.stringify({
+            'sendid': id,
+            'content1': $('#metext').val()
+        });
+        stompClient.send("/chatbotme", {}, msg);
+    }
+
+    $(document).ready(function () {
+        connect();
+        $("#sendme").click(function () {
+            sendMe();
+        });
+    });
+</script>
+
+
+<div class="container">
+    <div class="col-sm-5">
+        <h1>Chatbot</h1>
+        <H1 th:text="${session.logincust.id}">ID</H1>
+        <H1 id="status">Status</H1>
+
+        <input type="text" id="metext">
+        <button id="sendme">Send</button>
+        <div id="me"></div>
+
+    </div>
+</div>
