@@ -33,7 +33,11 @@ example code box
 
 :star: 상품
 
-  * 조회
+  * 전체 조회
+  
+  <img src="https://user-images.githubusercontent.com/122088040/231143266-ac8cfbd3-ed0d-4610-b648-40f820dccff1.png" width="500" height="400"/>
+
+  
   * 추가
   * 삭제
   * 업데이트
