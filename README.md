@@ -58,6 +58,9 @@ example code box
 
 :star: OCR
 
+<img src="https://user-images.githubusercontent.com/122088040/231164292-4e8262bc-e1e4-4efb-b33e-7505a91fedbd.png" width="300" height="400"/>
+
+
 :star: 날씨 API json parsing
 
 
