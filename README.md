@@ -34,8 +34,8 @@ example code box
 :star: 상품
 
   * 전체 조회
-  
-  <img src="https://user-images.githubusercontent.com/122088040/231143266-ac8cfbd3-ed0d-4610-b648-40f820dccff1.png" width="500" height="400"/>
+
+  <img src="https://user-images.githubusercontent.com/122088040/231145645-0fe3c3a6-cb81-4181-932c-7b2105e57aef.png" width="500" height="400"/>
 
   
   * 추가
