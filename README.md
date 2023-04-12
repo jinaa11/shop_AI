@@ -14,6 +14,10 @@ example code box
 <img src="https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white">
 
 
+## 4) DB 설계
+
+<img src="https://user-images.githubusercontent.com/122088040/231398345-d15dba80-a2df-4201-a11c-085be13bc79f.png"  width="600" height="500"/>
+
 
 ## 3) 주요 기능
 :star: 로그인
