@@ -1,8 +1,8 @@
 <script>
     function delcart(did) {
         var c = confirm("삭제하시겠습니까?");
-        if(c == true) {
-            location.href='/cart/deleteimpl?id='+did+'&cid=[[${session.logincust.id}]]';
+        if (c == true) {
+            location.href = '/cart/deleteimpl?id=' + did + '&cid=[[${session.logincust.id}]]';
         }
     }
 
@@ -18,8 +18,8 @@
     <h2>Cart List</h2>
     <p>Cart Information List</p>
 
-    <h3 th:text="'합계: ' + ${#aggregates.sum(carts.getList().![item_price * cnt])}"></h3>
-    <h3 th:text="'합계: ' + ${#aggregates.sum(mycarts.![item_price * cnt])}"></h3>
+    <h3 th:text="'합계: ' + ${#numbers.formatInteger(#aggregates.sum(carts.getList().![item_price * cnt]), 3, 'COMMA') + '원'}"></h3>
+    <!-- <h3 th:text="'합계: ' + ${#aggregates.sum(mycarts.![item_price * cnt])}"></h3>-->
     <table class="table table-striped" style="width:70%">
         <thead>
         <tr>
@@ -42,12 +42,13 @@
             <td th:text="${cart.item_name}"></td>
             <td th:text="${cart.item_price}"></td>
             <td th:text="${cart.cnt}"></td>
-            <td th:text="${cart.item_price} * ${cart.cnt}"></td>
+            <td th:text="${#numbers.formatInteger(cart.item_price * cart.cnt, 3, 'COMMA') + '원'}"></td>
             <td th:text="${#dates.format(cart.rdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
             <td>
                 <!-- <a th:href="@{/cart/deletecart(id=${cart.id}, cust_id=${session.logincust.id})}" class="btn btn-danger"-->
                 <!--  role="button">DELETE THIS ITEM</a>-->
-                <button type="button" class="btn btn-danger" th:onclick="delcart([[${cart.id}]]);">DELETE THIS ITEM</button>
+                <button type="button" class="btn btn-danger" th:onclick="delcart([[${cart.id}]]);">DELETE THIS ITEM
+                </button>
             </td>
         </tr>
         </tbody>

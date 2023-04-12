@@ -13,7 +13,7 @@ public class StomWebSocketConfig implements WebSocketMessageBrokerConfigurer {
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
     // ws라는 이름으로 웹 소켓을 만들어서 서비스를 제공 - ~ IP 주소로 접근하면
-    registry.addEndpoint("/ws").setAllowedOrigins("http://127.0.0.1:8080", "http://127.0.0.1", "http://10.10.10.190").withSockJS();
+    registry.addEndpoint("/ws").setAllowedOrigins("http://27.96.130.118", "http://127.0.0.1", "http://10.10.10.190").withSockJS();
   }
 
   /* 어플리케이션 내부에서 사용할 path를 지정할 수 있음 */

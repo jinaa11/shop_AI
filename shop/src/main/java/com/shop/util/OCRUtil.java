@@ -27,7 +27,7 @@ public class OCRUtil {
 
   public static String getText(String imgpath, String imgname) {
     // 네이버 가이드북에 있음
-    String imageFile = imgpath + "\\" + imgname;
+    String imageFile = imgpath + imgname;
     StringBuffer response = null;
     try {
       URL url = new URL(apiURL);

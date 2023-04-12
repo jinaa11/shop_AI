@@ -29,7 +29,7 @@
             </td>
             <td th:text="${item.id}"></td>
             <td th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
+            <td th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></td>
             <td th:text="${item.rdate}"></td>
             <td th:if="${session.logincust != null}">
                 <a th:href="@{/item/addcart(id=${item.id})}" class="btn btn-info" role="button">ADD CART</a>
